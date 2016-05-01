@@ -1,50 +1,55 @@
 package com.uva.introduction;
 
-//Uva- 12503
+//Uva- 12554
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class RobotInstructions {
+public class ASpecialHappyBirthdaySong {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
     static StringTokenizer stringTokenizer;
 
+
     static void solve() throws Exception {
 
-        int testCase, instructionNum, position, tmp, tmp2;
-        String str;
+        int testCase, count, k = 0;
+        String str = "Happy birthday to you Happy birthday to you Happy birthday to Rujia Happy birthday to you";
+        String[]temp = str.split(" ");
+
 
         testCase = nextInt();
+        String[] people = new String[testCase+1];
 
         for(int i = 0; i < testCase; i++) {
-
-            instructionNum = nextInt();
-            int[] arr = new int[instructionNum];
-            position = 0;
-
-            for(int j = 0; j < instructionNum; j++) {
-
-                str = nextLine();
-
-                if(str.equals("LEFT")) {
-                    arr[j] = -1;
-                }
-                else if(str.equals("RIGHT")) {
-                    arr[j] = 1;
-                }
-                else {
-                    tmp = str.lastIndexOf(' ');
-                    tmp2 = Integer.parseInt(new String(str.substring( tmp + 1)));
-                    arr[j] = arr[tmp2-1];
-                }
-                position += arr[j];
-            }
-            printWriter.println(position);
-            printWriter.flush();
+            people[i] = nextLine();
         }
+
+        //To check how many times the song has to be repeated, for the number of people
+        if(testCase <= 16)
+            count = 1;
+        else if(testCase <= 32)
+            count = 2;
+        else if(testCase <= 48)
+            count = 3;
+        else if(testCase <= 64)
+            count = 4;
+        else if(testCase <= 80)
+            count = 5;
+        else
+            count = 6;
+
+        for(int i = 0; i < count; i++) {
+            for(int j = 0; j < 16; j++) {
+                printWriter.println(people[k%testCase] + ": " + temp[j]); //k modulo testCase to cycle between 0 - (testCase-1)
+                printWriter.flush();
+                k++;
+            }
+        }
+
     }
+
 
     static int nextInt() throws IOException {
         return Integer.parseInt( next() );
