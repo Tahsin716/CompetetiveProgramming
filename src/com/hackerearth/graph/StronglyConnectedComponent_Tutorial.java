@@ -29,6 +29,12 @@ public class StronglyConnectedComponent_Tutorial {
 
         ArrayList<ArrayList<Integer>> SCC_Components = graph.Kosaraju_SCC();
 
+       /* for(ArrayList<Integer> index: SCC_Components) {
+            for(int scc: index)
+                printWriter.print(scc + " ");
+            printWriter.println();
+        } */
+
         for(ArrayList<Integer> index: SCC_Components) {
 
             int sum = 0, count = 0;
