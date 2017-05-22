@@ -1,39 +1,38 @@
 package com.acm;
 
-/**
- * Detect the number of comma and semi-colon in a program.
- *
- * Student ID: 1432020022
- * Name: Tahsin Rashad
- */
-
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Assignment_1 {
+public class FibonacciNumber {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
     static StringTokenizer stringTokenizer;
 
+
     static void solve() throws Exception {
 
-        String str = bufferedReader.readLine();
-        int commaCount = 0, semicolonCount = 0;
 
-        for(int i = 0; i < str.length(); i++) {
+        int[] fibonacci = new int[100];
+        int LIMIT = 500;
+        fibonacci[0] = 0; fibonacci[1] = 1;
 
-            if(str.charAt(i) == ',')
-                commaCount++;
-            else if(str.charAt(i) == ';')
-                semicolonCount++;
+        printWriter.printf("%d%n%d%n", fibonacci[0], fibonacci[1]);
+
+        for(int i = 2; fibonacci[i] <= LIMIT; i++) {
+
+            fibonacci[i] = fibonacci[i-1] + fibonacci[i-2];
+
+            if(fibonacci[i] <= LIMIT)
+                printWriter.println(fibonacci[i]);
+            else
+                break;
 
         }
 
-        printWriter.printf("Number of Comma: %d%nNumber of Semi-colon: %d%n",commaCount,semicolonCount);
         printWriter.flush();
-
     }
+
 
     public static void main(String[] args) {
 
