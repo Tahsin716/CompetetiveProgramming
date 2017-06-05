@@ -1,16 +1,9 @@
-package com.acm;
-
-/**
- * Detect the number of comma and semi-colon in a program.
- *
- * Student ID: 1432020022
- * Name: Tahsin Rashad
- */
+package com.javalab;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Assignment_1 {
+public class SentinelLoop {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
@@ -18,19 +11,17 @@ public class Assignment_1 {
 
     static void solve() throws Exception {
 
-        String str = bufferedReader.readLine();
-        int commaCount = 0, semicolonCount = 0;
+        int input;
+        int max = Integer.MIN_VALUE;
 
-        for(int i = 0; i < str.length(); i++) {
+        while( (input = nextInt()) != 0) {
 
-            if(str.charAt(i) == ',')
-                commaCount++;
-            else if(str.charAt(i) == ';')
-                semicolonCount++;
+            if(input > max)
+                max = input;
 
         }
 
-        printWriter.printf("Number of Comma: %d%nNumber of Semi-colon: %d%n",commaCount,semicolonCount);
+        printWriter.printf("Max number is: %d%n",max);
         printWriter.flush();
 
     }

@@ -1,9 +1,10 @@
-package com.acm;
+package com.hackerrank.algorithms;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class SentinelLoop {
+public class SortKortePariNa {
+
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
@@ -11,20 +12,30 @@ public class SentinelLoop {
 
     static void solve() throws Exception {
 
-        int input;
-        int max = Integer.MIN_VALUE;
+        int n = nextInt();
+        int temp, count = 0;
+        int[] elements = new int[n];
 
-        while( (input = nextInt()) != 0) {
-
-            if(input > max)
-                max = input;
-
+        for(int i = 0; i < n; i++) {
+            elements[i] = nextInt();
         }
 
-        printWriter.printf("Max number is: %d%n",max);
-        printWriter.flush();
+        for(int i = 0; i < n; i++) {
+            for(int j = 1; j < n - i; j++) {
+                if(elements[j-1] > elements[j]){
+                    temp = elements[j-1];
+                    elements[j-1] = elements[j];
+                    elements[j] = temp;
+                    count++;
+                }
+            }
+        }
 
+
+        printWriter.println(count);
+        printWriter.flush();
     }
+
 
     public static void main(String[] args) {
 
