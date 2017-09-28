@@ -1,35 +1,36 @@
-package com.javalab;
+package com.uva.mathematics;
+
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.StringTokenizer;
 
-public class SentinelLoop {
+public class Product {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
     static StringTokenizer stringTokenizer;
 
-    static void solve() throws Exception {
+    public static void solve() throws Exception {
+        String input;
+        BigInteger firstNumber;
+        BigInteger secondNumber;
 
-        int input;
-        int max = Integer.MIN_VALUE;
+        while ((input = bufferedReader.readLine()) != null) {
 
-        while( (input = nextInt()) != 0) {
+            firstNumber = new BigInteger(input);
+            secondNumber = new BigInteger(bufferedReader.readLine());
 
-            if(input > max)
-                max = input;
-
+            printWriter.println(secondNumber.multiply(firstNumber));
         }
-
-        printWriter.printf("Max number is: %d%n",max);
         printWriter.flush();
-
     }
+
+
 
     public static void main(String[] args) {
 
         try {
-
             bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             printWriter = new PrintWriter(new BufferedOutputStream(System.out));
             solve();
