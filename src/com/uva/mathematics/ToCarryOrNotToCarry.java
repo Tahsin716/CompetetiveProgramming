@@ -1,40 +1,31 @@
 package com.uva.mathematics;
 
-//Uva - 10370
+//Uva - 10469
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class AboveAverage {
+public class ToCarryOrNotToCarry {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
     static StringTokenizer stringTokenizer;
 
     static void solve() throws Exception {
-        int testCases = nextInt();
-        int N, aboveCount, sum;
 
-        int[] marks = new int[1005];
-        double average;
+        int firstNumber, secondNumber, ans, sum, carry;
+        String input;
+        String[] numbers;
 
-        while (testCases-- > 0) {
-            N = nextInt();
-            sum = 0;
-            aboveCount = 0;
+        while ( (input = bufferedReader.readLine()) != null ) {
+            numbers = input.split(" ");
+            firstNumber = Integer.parseInt(numbers[0]);
+            secondNumber = Integer.parseInt(numbers[1]);
 
-            for (int i = 0; i < N; i++) {
-                marks[i] = nextInt();
-                sum += marks[i];
-            }
-            average = (double)sum / (double)N;
+            carry = firstNumber & secondNumber;
+            sum = firstNumber ^ secondNumber;
 
-            for (int i = 0; i < N; i++) {
-                if (marks[i] > average)
-                    aboveCount++;
-            }
-
-            printWriter.printf("%.3f%%%n", (double)aboveCount / (double)N * 100.000);
+            printWriter.println(sum);
         }
         printWriter.flush();
     }
