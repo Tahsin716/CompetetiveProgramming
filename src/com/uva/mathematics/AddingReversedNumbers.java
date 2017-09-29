@@ -1,7 +1,7 @@
 package com.uva.mathematics;
 
 //UVa- 713
-
+//Bigint gets rid of the trailing zeroes after parsing string
 import java.io.*;
 import java.math.BigInteger;
 import java.util.StringTokenizer;

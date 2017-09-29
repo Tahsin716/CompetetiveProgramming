@@ -1,33 +1,41 @@
 package com.uva.mathematics;
 
-//Uva - 10106
-
 import java.io.*;
-import java.math.BigInteger;
 import java.util.StringTokenizer;
 
-public class Product {
+public class AboveAverage {
 
     static BufferedReader bufferedReader;
     static PrintWriter printWriter;
     static StringTokenizer stringTokenizer;
 
-    public static void solve() throws Exception {
-        String input;
-        BigInteger firstNumber;
-        BigInteger secondNumber;
+    static void solve() throws Exception {
+        int testCases = nextInt();
+        int N, aboveCount, sum;
 
-        while ((input = bufferedReader.readLine()) != null) {
+        int[] marks = new int[1005];
+        double average;
 
-            firstNumber = new BigInteger(input);
-            secondNumber = new BigInteger(bufferedReader.readLine());
+        while (testCases-- > 0) {
+            N = nextInt();
+            sum = 0;
+            aboveCount = 0;
 
-            printWriter.println(secondNumber.multiply(firstNumber));
+            for (int i = 0; i < N; i++) {
+                marks[i] = nextInt();
+                sum += marks[i];
+            }
+            average = (double)sum / (double)N;
+
+            for (int i = 0; i < N; i++) {
+                if (marks[i] > average)
+                    aboveCount++;
+            }
+
+            printWriter.printf("%.3f%%%n", (double)aboveCount / (double)N * 100.000);
         }
         printWriter.flush();
     }
-
-
 
     public static void main(String[] args) {
 
