@@ -19,7 +19,7 @@ public class AverageSpeed {
         int speed = 0;
         double distance = 0.0, initialTime = 0.0, finalTime = 0.0, hour, minute, second;
 
-        while ( !(str = bufferedReader.readLine()).equals("")) {
+        while ( (str = bufferedReader.readLine()) != null) {
 
             str = str.trim();
             input = str.split("\\s+");
