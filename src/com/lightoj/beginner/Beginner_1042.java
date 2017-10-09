@@ -12,48 +12,33 @@ public class Beginner_1042 {
 
     static void solve() throws Exception {
 
-        int testCase, number, cardinality, temp, cases = 1, tempCardinality;
-        boolean flag;
+        int testCase, number, rightOne, nextHigherOneBit, rightOnesPattern, next = 0, index;
 
+        StringBuilder stringBuilder = new StringBuilder();
+        index = 0;
         testCase = nextInt();
         while (testCase-- > 0) {
-
             number = nextInt();
-            temp = number + 1;
-            tempCardinality = 0;
-            cardinality = 0;
-            flag = true;
 
-            while(number > 0) {
+            if (number != 0) {
+                rightOne = number & -number;
 
-                if(number % 2 == 1)
-                    cardinality++;
+                nextHigherOneBit = number + rightOne;
 
-                number = number / 2;
+                rightOnesPattern = number ^ nextHigherOneBit;
+
+                rightOnesPattern = (rightOnesPattern)/ rightOne;
+
+                rightOnesPattern = rightOnesPattern >> 2;
+
+                next = nextHigherOneBit | rightOnesPattern;
+
+                ++index;
             }
-
-            //System.out.println(cardinality);
-
-
-            while (flag) {
-
-                number = ++temp;
-                tempCardinality= 0;
-
-                while (number > 0) {
-
-                    if (number %2 == 1)
-                        tempCardinality++;
-
-                    number = number / 2;
-                }
-
-                if(cardinality == tempCardinality) {
-                    printWriter.printf("Case %d: %d%n", cases++, temp);
-                    flag = false;
-                }
-            }
+            stringBuilder.append(String.format("Case %d: %d%n", index, next));
         }
+
+        printWriter.print(stringBuilder);
         printWriter.flush();
     }
 
