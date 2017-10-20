@@ -53,6 +53,7 @@ public class Beginner_1214 {
                     out.println("not divisible");
                 }
             }
+            out.flush();
         }
 
     }
@@ -168,6 +169,10 @@ public class Beginner_1214 {
 
         public void close() {
             writer.close();
+        }
+
+        public void flush() {
+            writer.flush();
         }
 
         public void print(int i) {

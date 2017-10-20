@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
-import java.util.InputMismatchException;
 import java.io.Writer;
 import java.io.OutputStreamWriter;
+import java.util.InputMismatchException;
+
 
 
 /**
@@ -16,7 +17,7 @@ import java.io.OutputStreamWriter;
  *
  * @author Tahsin Rashad
  */
-public class Beginner_1354 {
+public class Beginner_1225 {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -30,53 +31,33 @@ public class Beginner_1354 {
     static class Task {
         public void solve(int testNumber, InputReader in, OutputWriter out) {
 
-            int testCase, first, second, third, fourth, binFirst, binSecond, binThird, binFourth;
-            int decFirst, decSecond, decThird, decFourth;
-            String[] input;
+            int testCase, number, sum, remainder, temp;
 
             testCase = in.nextInt();
             for (int i = 1; i <= testCase; i++) {
 
-                input = in.nextString().split("\\.");
-                first = Integer.parseInt(input[0]);
-                second = Integer.parseInt(input[1]);
-                third = Integer.parseInt(input[2]);
-                fourth = Integer.parseInt(input[3]);
+                number = in.nextInt();
+                temp = number;
+                sum = 0;
 
-                input = in.nextString().split("\\.");
-                binFirst = Integer.parseInt(input[0]);
-                binSecond = Integer.parseInt(input[1]);
-                binThird = Integer.parseInt(input[2]);
-                binFourth = Integer.parseInt(input[3]);
+                while (number > 0) {
 
-                decFirst = toDecimal(binFirst);
-                decSecond = toDecimal(binSecond);
-                decThird = toDecimal(binThird);
-                decFourth = toDecimal(binFourth);
+                    remainder = number % 10;
+                    number /= 10;
+
+                    sum = sum * 10 + remainder;
+                }
 
                 out.print("Case ");
                 out.print(i);
                 out.print(": ");
 
-                if ((first == decFirst) && (second == decSecond) && (third == decThird) && (fourth == decFourth))
+                if (temp == sum)
                     out.println("Yes");
                 else
                     out.println("No");
-
             }
-
-        }
-
-        private int toDecimal(int binaryNumber) {
-            int remainder, sum = 0, index = 0;
-
-            while (binaryNumber != 0) {
-                remainder = binaryNumber % 10;
-                binaryNumber /= 10;
-                sum += remainder * Math.pow(2, index++);
-            }
-
-            return sum;
+            out.flush();
         }
 
     }
@@ -169,21 +150,6 @@ public class Beginner_1354 {
                 c = read();
             } while (!isSpaceChar(c));
             return res * sgn;
-        }
-
-        public String nextString() {
-            int c = read();
-            while (isSpaceChar(c)) {
-                c = read();
-            }
-            StringBuilder res = new StringBuilder();
-            do {
-                if (Character.isValidCodePoint(c)) {
-                    res.appendCodePoint(c);
-                }
-                c = read();
-            } while (!isSpaceChar(c));
-            return res.toString();
         }
 
         public boolean isSpaceChar(int c) {
