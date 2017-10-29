@@ -50,7 +50,7 @@ public class Beginner_1311 {
                 distanceTrain2 = (v2 / 2) * timeTrain2;
                 distance = distanceTrain1 + distanceTrain2;
 
-                birdDistance = v3 * ((timeTrain1 > timeTrain2) ? timeTrain1 : timeTrain2);
+                birdDistance = v3 * Math.max(timeTrain1, timeTrain2);
 
                 out.print("Case ");
                 out.print(i);
