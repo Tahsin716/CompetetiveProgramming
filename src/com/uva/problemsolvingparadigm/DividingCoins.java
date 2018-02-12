@@ -16,7 +16,7 @@ import java.io.InputStream;
  *
  * @author Tahsin Rashad
  */
-public class SuperSale {
+public class DividingCoins {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -28,43 +28,36 @@ public class SuperSale {
     }
 
     static class Task {
-        int capacity = 0;
-        int n = 0;
-        int profit = 0;
+        int n;
+        int capacity;
         int[] weight;
-        int[] cost;
         int[][] dp;
+
         public void solve(int testNumber, InputReader in, OutputWriter out) {
 
             int testCase = in.nextInt();
 
-            weight = new int[1005];
-            cost = new int[1005];
-
-            dp = new int[1005][105];
+            weight = new int[501];
+            dp = new int[501][50001];
 
             while (testCase-- > 0) {
 
                 n = in.nextInt();
+                int sum = 0;
 
-                for (int i = 0; i < n; i++) {
-                    cost[i] = in.nextInt();
+                for (int[] temp : dp) {
+                    Arrays.fill(temp, -1);
+                }
+
+                for (int i = 1; i <= n; i++) {
                     weight[i] = in.nextInt();
+                    sum += weight[i];
                 }
 
-                int G = in.nextInt();
-                int ans = 0;
+                capacity = sum / 2;
 
-
-                for (int i = 0; i < G; i++) {
-                    capacity = in.nextInt();
-
-                    for (int[] temp : dp) {
-                        Arrays.fill(temp, -1);
-                    }
-
-                    ans += knapsack(0, 0);
-                }
+                int value = knapsack(1, 0);
+                int ans = sum - 2 * value;
 
                 out.println(ans);
             }
@@ -72,7 +65,7 @@ public class SuperSale {
 
         public int knapsack(int i, int w) {
 
-            if (i >= n) {
+            if (i == n + 1) {
                 return 0;
             }
 
@@ -80,15 +73,39 @@ public class SuperSale {
                 return dp[i][w];
             }
 
-            profit = 0;
+            int profitTaken = 0;
 
             if (w + weight[i] <= capacity) {
-                profit = Math.max(knapsack(i + 1, w + weight[i]) + cost[i], knapsack(i + 1, w));
+                profitTaken = weight[i] + knapsack(i + 1, w + weight[i]);
             } else {
-                profit = knapsack(i + 1, w);
+                profitTaken = 0;
             }
 
-            return dp[i][w] = profit;
+            int profitNotTaken = knapsack(i + 1, w);
+            dp[i][w] = Math.max(profitTaken, profitNotTaken);
+
+            return dp[i][w];
+        }
+
+    }
+
+    static class OutputWriter {
+        private final PrintWriter writer;
+
+        public OutputWriter(OutputStream outputStream) {
+            writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
+        }
+
+        public OutputWriter(Writer writer) {
+            this.writer = new PrintWriter(writer);
+        }
+
+        public void close() {
+            writer.close();
+        }
+
+        public void println(int i) {
+            writer.println(i);
         }
 
     }
@@ -158,27 +175,6 @@ public class SuperSale {
         public interface SpaceCharFilter {
             public boolean isSpaceChar(int ch);
 
-        }
-
-    }
-
-    static class OutputWriter {
-        private final PrintWriter writer;
-
-        public OutputWriter(OutputStream outputStream) {
-            writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(outputStream)));
-        }
-
-        public OutputWriter(Writer writer) {
-            this.writer = new PrintWriter(writer);
-        }
-
-        public void close() {
-            writer.close();
-        }
-
-        public void println(int i) {
-            writer.println(i);
         }
 
     }
